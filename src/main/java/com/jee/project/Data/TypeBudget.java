@@ -1,5 +1,7 @@
 package com.jee.project.Data;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -10,7 +12,7 @@ import java.util.List;
 
 @Data
 @Entity
-public class Type {
+public class TypeBudget {
 
     @Id
     @GeneratedValue
@@ -23,14 +25,15 @@ public class Type {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Budget budget;
 
-    @OneToMany(mappedBy = "type")
+    @JsonManagedReference(value="rubrique")
+    @OneToMany(mappedBy = "typeBudget")
     private List<Rubrique> rubriques;
 
-    public Type(String nom) {
+    public TypeBudget(String nom) {
         this.nom = nom;
     }
 
-    public Type() {
+    public TypeBudget() {
     }
 }
 

@@ -1,20 +1,14 @@
 package com.jee.project;
 
 
-import com.jee.project.DAO.BudgetRepository;
-import com.jee.project.DAO.CompteRepository;
-import com.jee.project.DAO.RubriqueRepository;
-import com.jee.project.DAO.TypeRepository;
-import com.jee.project.Data.Budget;
-import com.jee.project.Data.Compte;
-import com.jee.project.Data.Rubrique;
-import com.jee.project.Data.Type;
+import com.jee.project.DAO.*;
+import com.jee.project.Data.Role;
+import com.jee.project.Data.RoleName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-
+import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication
@@ -28,11 +22,21 @@ public class ProjectApplication implements CommandLineRunner {
     BudgetRepository budgetRepository;
 
     @Autowired
-    TypeRepository typeRepository;
+    TypeBudgetRepository typeBudgetRepository;
 
     @Autowired
     RubriqueRepository rubriqueRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+//        @Bean
+//    public void init() {
+//
+//        //ROLES
+//        roleRepository.save(new Role(RoleName.ROLE_ADMIN));
+//        roleRepository.save(new Role(RoleName.ROLE_USER));
+//    }
     public static void main(String[] args) {
 
         SpringApplication.run(ProjectApplication.class, args);
@@ -40,7 +44,7 @@ public class ProjectApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
 //        Compte c = new Compte(12);
 //        Budget b = new Budget(12);
@@ -49,15 +53,15 @@ public class ProjectApplication implements CommandLineRunner {
 //        compteRepository.save(c);
 
 //
-        Type t = typeRepository.getOne((long) 9);
+//        TypeBudget t = typeBudgetRepository.getOne((long) 9);
 //
 //        Rubrique r = new Rubrique((long) 123, "test");
 //
-//        r.setType(t);
+//        r.setTypeBudget(t);
 //
 //        Rubrique r2 = new Rubrique((long) 123, "test22");
 //
-//        r2.setType(t);
+//        r2.setTypeBudget(t);
 //
 //        rubriqueRepository.save(r);
 //        rubriqueRepository.save(r2);
@@ -73,8 +77,8 @@ public class ProjectApplication implements CommandLineRunner {
 //        }
 
 
-        for (Rubrique rub : t.getRubriques()) {
-            System.out.println(rub.getNom());
-        }
+//        for (Rubrique rub : t.getRubriques()) {
+//            System.out.println(rub.getNom());
+//        }
     }
 }
